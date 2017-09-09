@@ -45,9 +45,6 @@ bar1=new bar();
 bar2=new bar(width,height/2);
 //frameRate(7);
 displayText("PING-PONG", width/2, height/11)
-
-	setInterval(function(){document.getElementById("fps").innerHTML=frameRate()},700)
-	setInterval("clearconsole()",5000)
 }
 
 function createLine(){
@@ -99,7 +96,7 @@ function logger(ball) {
 
 
 function draw() {
-  // document.getElementById("fps").innerHTML=frameRate();
+
 background("black");
 bar1.draw(); 
 bar1.update();

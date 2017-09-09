@@ -13,10 +13,9 @@
    
 
   
-    <p id="fps"></p>
-    <h1 align="center"><font size="6" color="LightSeaGreen" face="verdana">PING-PONG</font></h1>
-    <!-- <style> body {padding: 90; margin: 90;} </style> -->
-   <div id="game_window" align="center" >
+    <script>
+      (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();stats.domElement.style.cssText='position:fixed;left:0;top:0;z-index:10000';document.body.appendChild(stats.domElement);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='stats.js';document.head.appendChild(script);})()
+      </script>
      
     </div>
   
