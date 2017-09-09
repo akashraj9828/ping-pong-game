@@ -11,6 +11,7 @@ var b;
 var wallhit
 var paddleHit
 var missBall
+var bar1
 
 
 
