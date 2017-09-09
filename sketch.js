@@ -37,6 +37,11 @@ var bar1
 function setup(){
 //frameRate(45)
 
+wallhit=loadSound("sounds/wh.mp3")
+paddleHit=loadSound("sounds/ph.mp3")
+missBall=loadSound("sounds/bm.mp3")
+  
+
 var canvas = createCanvas(windowWidth-100,windowHeight-100);
  canvas.parent('game_window');
 createBall();

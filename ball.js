@@ -64,7 +64,7 @@ this.wall=function(bar1){
 	 	temp=constrain(this.xspeed*multiplier*10,-Xsmax,-4)
 		this.yspeed=constrain(this.yspeed*multiplier,-Ysmax,Ysmax)
 		this.xspeed=-temp
-		// paddleHit.play();
+		paddleHit.play();
 	// if (this.xspeed<4&&this.xspeed>-4) {
 	// 	this.xspeed=constrain(this.xspeed,-Xsmax,Xsmax)+2
 	// }
@@ -75,7 +75,7 @@ this.wall=function(bar1){
 	//console.log(multiplier)
 	}
 	 if(this.x<0){
-		// missBall.play();
+		missBall.play();
 		dead=1;
 
 		p2score++
@@ -97,13 +97,13 @@ this.wallForBot=function(bar2){
 		this.xspeed=-this.xspeed
 		this.dir(this.xspeed,this.yspeed)
 		//console.log(multipl)
-	// paddleHit.play();
+	paddleHit.play();
 	}
 
 	 if(this.x>width){
 		dead=1;
 		p1score++
-		// wallhit.paly();
+		missBall.paly();
 		//console.log("dead p2");
 		this.reset(-1)
 	}
@@ -114,6 +114,7 @@ this.bounce=function(s){
 		this.xspeed=this.xspeed
 		this.yspeed=-this.yspeed
 		this.dir(this.xspeed,this.yspeed)
+		wallhit.play()
 	}
 }
 
