@@ -6,7 +6,7 @@ var bwidth = 30
 var dead = 0;
 var p1score = 0;
 var p2score = 0;
-var winnningScore = 1;
+var winnningScore = 10;
 var b;
 var wallhit
 var paddleHit
@@ -49,7 +49,7 @@ function setup() {
 	bwidth = 30
 	bar1 = new bar();
 	bar2 = new bar(width, height / 2);
-	//frameRate(7);
+	
 	displayText("PING-PONG", width / 2, height / 11)
 }
 
@@ -128,7 +128,7 @@ function draw() {
 		p1score = 0;
 		p2score = 0;
 		noLoop();
-		displayText("YOY WIN!!!!\nCLICK \n TO \n PLAY\nAGAIN", width / 2, height / 3, "LightCyan")
+		displayText("YOU WIN!!!!\nCLICK \n TO \n PLAY\nAGAIN", width / 2, height / 3, "LightCyan")
 		if (mouseIsPressed) {
 
 			createBall;
@@ -154,18 +154,11 @@ function draw() {
 	}
 
 
-	// displayText(" CLICK \n TO \n PLAY\nAGAIN",width/2,height/2,"LightCyan")
-	//console.log(p1score+"-----"+p2score)
-
-	// if(dead==1){
-	// 	b.reset();
-	// }
-	//else{ console.log(b.xspeed)}
+	
 
 	displayText(p1score, width / 4, height / 12, "white", ITALIC)
 	displayText(p2score, 3 * width / 4, height / 12, "white", ITALIC)
 
-	//setInterval(logger(b),700)
 
 }
 
@@ -200,12 +193,6 @@ function createBall() {
 
 function displayText(data, lox, loy, clr, style) {
 
-	// 	scoreWidth=35
-	// 	textSize(20);
-	// 	fill(173, 150, 255);
-
-	// text("SCORE", width/2-scoreWidth, height/11);
-	//this.text1="S"
 	txt = "" + data;
 	if (clr) {
 		fill(clr);
