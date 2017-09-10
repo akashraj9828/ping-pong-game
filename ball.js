@@ -104,7 +104,7 @@ function ball() {
 		if (this.x > width) {
 			dead = 1;
 			p1score++
-			missBall.paly();
+			missBall.play();
 			//console.log("dead p2");
 			this.reset(-1)
 		}
