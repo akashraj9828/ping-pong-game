@@ -38,28 +38,35 @@ function setup() {
 function draw() {
 
 	background("black");
-	bar1.draw();
-	bar1.update();
-	createLine();
-	bar2.draw();
-	bar2.bot(b)
+
+	//PADLLE 1
+		bar1.draw();
+		bar1.update();
+		createLine();
+		bar2.draw();
+		bar2.bot(b)
 
 
-	b.update();		//ok
-	b.show();		//ok
+	//BALL
+		b.update();		//ok
+		b.show();		//ok
+		b.wall(bar1);	//ok	
+		b.wallForBot(bar2);	//ok
+		b.bounce();		//ok
+		b.SpeedCheck()	//ok
 
-	b.wall(bar1);
-	b.wallForBot(bar2);
-	b.bounce(1);
-	b.SpeedCheck()	//ok
+
+
+
+
+	if (logging)
+	logger(b);
+
+}
+
+function texts() {
 
 	stroke("black");
-
-	displayText()
-	if (logging)
-		logger(b);
-
-
 	if (p1score >= winnningScore) {
 		//console.log("p1 winss")
 		p1score = 0;
@@ -101,7 +108,6 @@ function draw() {
 
 
 
-
 function createLine() {
 	gap = 10
 	s = 0
@@ -115,44 +121,6 @@ function createLine() {
 		s += 30
 	}
 }
-
-function play_pause(force_stop) {
-
-	if (pause) {
-		pause = false;
-		loop()
-	} else {
-		pause = true;
-		noLoop();
-	}
-
-
-}
-
-function keyPressed() {
-	if (key == "p" || key == "P") {
-		play_pause()
-	}
-	if (key == "r" || key == "R") {
-		setup();
-	}
-	if (key == "l" || key == "L") {
-		if (logging) {
-			logging = false
-		} else if (!logging) {
-			logging = true
-		}
-	}
-
-
-}
-
-
-
-
-
-
-
 
 
 function logger(ball) {
@@ -184,19 +152,10 @@ function mouseClicked() {
 	loop();
 }
 
-
-
-
-
-
 function createBall() {
 	b = new ball();
 
 }
-
-
-
-
 
 
 function displayText(data, lox, loy, clr, style) {
@@ -220,6 +179,40 @@ function displayText(data, lox, loy, clr, style) {
 	y = loy
 	textAlign(CENTER)
 	text(txt, lox, loy);
+
+
+}
+
+
+function play_pause(force_stop) {
+
+
+	if (pause) {
+		pause = false;
+		loop()
+	} else {
+		pause = true;
+		noLoop();
+	}
+
+
+}
+
+
+function keyPressed() {
+	if (key == "p" || key == "P") {
+		play_pause()
+	}
+	if (key == "r" || key == "R") {
+		setup();
+	}
+	if (key == "l" || key == "L") {
+		if (logging) {
+			logging = false
+		} else if (!logging) {
+			logging = true
+		}
+	}
 
 
 }

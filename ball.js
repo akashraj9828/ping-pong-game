@@ -9,6 +9,7 @@ function ball() {
 
 	this.setBallSpeed = function (xsp, ysp) {
 		this.xspeed = random(-4, 4)//*speed;
+		this.xspeed = random(-6, 6)//*speed;
 		this.yspeed = random(-4, 4)//*speethisd;
 		if (this.xspeed < 3 && this.xspeed > -3) {
 			this.xspeed = constrain(this.xspeed * offset, -this.xSpeedMax, this.xSpeedMax)
@@ -24,14 +25,14 @@ function ball() {
 	this.setBallSpeed();
 
 	this.SpeedCheck = function () {		//constraints speeds
-		
+
 		//xspeed too low
-		if(this.xspeed<6 && this.xspeed>-6){
-		this.xspeed = constrain(this.xspeed, -this.xSpeedMax, this.xSpeedMax) +random(3);
-		}else{
+		if (this.xspeed < 6 && this.xspeed > -6) {
+			this.xspeed = constrain(this.xspeed, -this.xSpeedMax, this.xSpeedMax) + random(3);
+		} else {
 			this.xspeed = constrain(this.xspeed, -this.xSpeedMax, this.xSpeedMax);
 		}
-		
+
 		//yspeed too low
 		if (this.yspeed < 2.5 && this.yspeed > -2.5) {
 			this.yspeed = constrain(this.yspeed, -this.ySpeedMax, this.ySpeedMax) + random(3)
@@ -74,8 +75,8 @@ function ball() {
 		//used to cahnge angle
 		//	more the ball is away from center yspeed will increase more
 		//	hence making more steeper angle
-		var Y_multiplier = map(dist, 0, bar1.height / 2, 0.5, 1.5)	//maps  dist to 0.2 to 1
-		var X_multiplier = map(dist, 0, bar1.height / 2, 0.7, 1.3)		//maps  dist to 0.7 to 1
+		var Y_multiplier = map(dist, 0, bar1.height / 2, 0.8, 1.3)	//maps  dist to 0.2 to 1
+		var X_multiplier = map(dist, 0, bar1.height / 2, 0.7, 1.5)		//maps  dist to 0.7 to 1
 
 
 		if (this.y > barTop && this.y < barDown && this.x < bar1.width) {
@@ -127,26 +128,25 @@ function ball() {
 		}
 	}
 
-	this.bounce = function (s) {
+	this.bounce = function () {
 		if (this.y > height || this.y < 0) {
-			this.xspeed = this.xspeed
 			this.yspeed = -this.yspeed
-			this.SpeedCheck(this.xspeed, this.yspeed)
 			wallhit.play()
 		}
 	}
 
-	this.reset = function (SpeedCheckec) {
+
+	this.reset = function (dir) {
 		death = 0;
 		this.x = width / 2;
 		this.y = height / 2;
 		this.xspeed = random(0, 4)
 		this.yspeed = random(-4, 4)
 		if (this.xspeed < 3 && this.xspeed > -3) {
-			this.xspeed = constrain(this.xspeed * SpeedCheckec * offset, -this.xSpeedMax, this.xSpeedMax)
+			this.xspeed = this.xspeed * offset * dir
 		}
 		if (this.yspeed < 2 && this.yspeed < -2) {
-			this.yspeed = constrain(this.yspeed * offset, -this.ySpeedMax, this.ySpeedMax)
+			this.yspeed = this.yspeed * offset
 		}
 		//console.log("xspeed"+this.xspeed)
 
