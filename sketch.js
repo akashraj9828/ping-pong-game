@@ -13,6 +13,7 @@ var paddleHit
 var missBall
 var bar1
 var pause=true
+var logging=false;
 
 
 function setup() {
@@ -27,11 +28,76 @@ function setup() {
 	canvas.parent('game_window');
 	createBall();
 	bheight = height / 4
-	bwidth = 30
+	bwidth = width/40
 	bar1 = new bar();
 	bar2 = new bar(width, height / 2);
 
 }
+
+
+function draw() {
+
+	background("black");
+	bar1.draw();
+	bar1.update();
+	createLine();
+	bar2.draw();
+	bar2.bot(b)
+
+
+	b.update();		//ok
+	b.show();		//ok
+	b.dir()	//ok
+	b.wall(bar1);
+	b.wallForBot(bar2);
+	b.bounce(1);
+	stroke("black");
+
+	displayText()
+	logger(b);
+
+
+	if (p1score >= winnningScore) {
+		//console.log("p1 winss")
+		p1score = 0;
+		p2score = 0;
+		noLoop();
+		displayText("YOU WIN!!!!\nCLICK \n TO \n PLAY\nAGAIN", width / 2, height / 3, "LightCyan")
+		if (mouseIsPressed) {
+
+			createBall;
+			loop();
+			console.clear()
+		}
+
+
+	} else if (p2score >= winnningScore) {
+		//	console.log('p2 winsss')
+		p1score = 0;
+		p2score = 0;
+		noLoop();
+		displayText("BOT WIN!!!!\nCLICK \n TO \n PLAY\nAGAIN", width / 2, height / 3, "LightCyan")
+		if (mouseIsPressed) {
+
+			createBall;
+			loop();
+			console.clear()
+		}
+
+
+	}
+
+
+
+
+	displayText(p1score, width / 4, height / 12, "white", ITALIC)
+	displayText(p2score, 3 * width / 4, height / 12, "white", ITALIC)
+
+
+}
+
+
+
 
 function createLine() {
 	gap = 10
@@ -93,77 +159,6 @@ function logger(ball) {
 	console.log("..........")
 
 }
-
-
-
-
-
-
-
-
-
-
-function draw() {
-
-	background("black");
-	bar1.draw();
-	bar1.update();
-	createLine();
-	bar2.draw();
-	bar2.bot(b)
-
-
-	b.update();
-	b.show();
-	b.dir(b.xspeed, b.yspeed)
-	b.wall(bar1);
-	b.wallForBot(bar2);
-	b.bounce(1);
-	stroke("black");
-
-	displayText()
-	logger(b);
-
-
-	if (p1score >= winnningScore) {
-		//console.log("p1 winss")
-		p1score = 0;
-		p2score = 0;
-		noLoop();
-		displayText("YOU WIN!!!!\nCLICK \n TO \n PLAY\nAGAIN", width / 2, height / 3, "LightCyan")
-		if (mouseIsPressed) {
-
-			createBall;
-			loop();
-			console.clear()
-		}
-
-
-	} else if (p2score >= winnningScore) {
-		//	console.log('p2 winsss')
-		p1score = 0;
-		p2score = 0;
-		noLoop();
-		displayText("BOT WIN!!!!\nCLICK \n TO \n PLAY\nAGAIN", width / 2, height / 3, "LightCyan")
-		if (mouseIsPressed) {
-
-			createBall;
-			loop();
-			console.clear()
-		}
-
-
-	}
-
-
-
-
-	displayText(p1score, width / 4, height / 12, "white", ITALIC)
-	displayText(p2score, 3 * width / 4, height / 12, "white", ITALIC)
-
-
-}
-
 
 
 function clearconsole() {

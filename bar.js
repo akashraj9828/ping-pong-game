@@ -10,6 +10,10 @@ function bar(posx, posy) {
 		this.y = (height / 2);
 	}
 
+	this.width=bwidth;
+	this.height=bheight;
+
+
 
 
 	this.draw = function () {
@@ -17,7 +21,7 @@ function bar(posx, posy) {
 		rectMode(CENTER);
 
 
-		rect(this.x, this.y, bwidth, bheight)
+		rect(this.x, this.y, this.width, this.height)
 	}
 
 	this.update = function () {
@@ -33,10 +37,10 @@ function bar(posx, posy) {
 		this.rand = random(40, 130) / 100;
 		ymul = 2
 
-		if ((this.y - ball.y) > bheight / 15) {
+		if ((this.y - ball.y) > this.height / 15) {
 			this.y -= abs(ball.yspeed) * this.rand
 			console.log(this.rand)
-		} else if ((this.y - ball.y) < bheight / 15) {
+		} else if ((this.y - ball.y) < this.height / 15) {
 			this.y += abs(ball.yspeed) * this.rand
 			console.log(this.rand)
 		}
