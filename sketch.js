@@ -12,8 +12,8 @@ var wallhit
 var paddleHit
 var missBall
 var bar1
-var pause=true
-var logging=false;
+var pause = true
+var logging = true;
 
 
 function setup() {
@@ -28,7 +28,7 @@ function setup() {
 	canvas.parent('game_window');
 	createBall();
 	bheight = height / 4
-	bwidth = width/40
+	bwidth = width / 40
 	bar1 = new bar();
 	bar2 = new bar(width, height / 2);
 
@@ -47,14 +47,17 @@ function draw() {
 
 	b.update();		//ok
 	b.show();		//ok
-	b.dir()	//ok
+
 	b.wall(bar1);
 	b.wallForBot(bar2);
 	b.bounce(1);
+	b.SpeedCheck()	//ok
+
 	stroke("black");
 
 	displayText()
-	logger(b);
+	if (logging)
+		logger(b);
 
 
 	if (p1score >= winnningScore) {
@@ -133,6 +136,14 @@ function keyPressed() {
 	if (key == "r" || key == "R") {
 		setup();
 	}
+	if (key == "l" || key == "L") {
+		if (logging) {
+			logging = false
+		} else if (!logging) {
+			logging = true
+		}
+	}
+
 
 }
 
