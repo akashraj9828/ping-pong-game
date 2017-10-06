@@ -12,26 +12,7 @@ var wallhit
 var paddleHit
 var missBall
 var bar1
-
-
-
-
-
-
-
-// function preload() {
-// 	wallhit=loadSound("sounds/wh.mp3")
-// paddleHit=loadSound("sounds/ph.mp3")
-// missBall=loadSound("sounds/bm.mp3")
-
-// }
-
-
-
-
-
-
-
+var pause=true
 
 
 function setup() {
@@ -42,15 +23,14 @@ function setup() {
 	missBall = loadSound("sounds/bm.mp3")
 
 
-	var canvas = createCanvas(windowWidth - 100, windowHeight - 100);
+	var canvas = createCanvas(windowWidth - 50, windowHeight - 95);
 	canvas.parent('game_window');
 	createBall();
 	bheight = height / 4
 	bwidth = 30
 	bar1 = new bar();
 	bar2 = new bar(width, height / 2);
-	
-	displayText("PING-PONG", width / 2, height / 11)
+
 }
 
 function createLine() {
@@ -67,6 +47,28 @@ function createLine() {
 	}
 }
 
+function play_pause(force_stop) {
+
+	if (pause) {
+		pause = false;
+		loop()
+	} else {
+		pause = true;
+		noLoop();
+	}
+
+
+}
+
+function keyPressed() {
+	if (key == "p" || key == "P") {
+		play_pause()
+	}
+	if (key == "r" || key == "R") {
+		setup();
+	}
+
+}
 
 
 
@@ -154,7 +156,7 @@ function draw() {
 	}
 
 
-	
+
 
 	displayText(p1score, width / 4, height / 12, "white", ITALIC)
 	displayText(p2score, 3 * width / 4, height / 12, "white", ITALIC)
