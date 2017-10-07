@@ -1,5 +1,5 @@
 
-var scl = 50;
+var scl = 25;
 var speed = 3
 var bheight = 200;
 var bwidth = 30
@@ -39,21 +39,29 @@ function draw() {
 
 	background("black");
 
-	//PADLLE 1
+
+	b.update();		//ok
+	//ok
+	b.bounce();
+
+	//PADLLE 1::::::
 		bar1.draw();
+		b.wall(bar1);
 		bar1.update();
+		
+
 		createLine();
-		bar2.draw();
+		
+	//PADLLE 2::::::
+		bar2.draw()
+		b.wallForBot(bar2);
 		bar2.bot(b)
+		bar2.PosCheck();
+	
+		b.show();	
 
-
-	//BALL
-		b.update();		//ok
-		b.show();		//ok
-		b.wall(bar1);	//ok	
-		b.wallForBot(bar2);	//ok
-		b.bounce();		//ok
-		b.SpeedCheck()	//ok
+	//BALL:::::::::
+				//ok
 
 
 
@@ -126,16 +134,18 @@ function createLine() {
 function logger(ball) {
 
 
-	console.log("SCORE::" + p1score + "---" + p2score)
-	console.log("\t\tBallSpeed::\nX=" + ball.xspeed + "\nY=" + ball.yspeed)
-	console.log("\t\tBallPoSITION::\nX=" + ball.x + "\nY=" + ball.y)
-	console.log("FPS=" + frameRate())
+	console.log(floor(ball.x)+":"+floor(ball.y)+"^"+floor(ball.xspeed)+":"+floor(ball.yspeed)+":>"+b.wallForBot(bar2))
 
-	console.log("..........")
-	console.log("..........")
-	console.log("..........")
-	console.log("..........")
-	console.log("..........")
+	// console.log("SCORE::" + p1score + "---" + p2score)
+	// console.log("\t\tBallSpeed::\nX=" + ball.xspeed + "\nY=" + ball.yspeed)
+	// console.log("\t\tBallPoSITION::\nX=" + ball.x + "\nY=" + ball.y)
+	// console.log("FPS=" + frameRate())
+
+	// console.log("..........")
+	// console.log("..........")
+	// console.log("..........")
+	// console.log("..........")
+	// console.log("..........")
 
 }
 
@@ -211,6 +221,13 @@ function keyPressed() {
 			logging = false
 		} else if (!logging) {
 			logging = true
+		}
+	}
+	if (key == "m" || key == "M") {
+		if (sound) {
+			sound = false
+		} else if (!sound) {
+			sound = true
 		}
 	}
 
