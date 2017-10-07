@@ -69,6 +69,7 @@ function draw() {
 
 	if (logging)
 	logger(b);
+	texts()
 
 }
 

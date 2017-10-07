@@ -7,7 +7,7 @@ function ball() {
 	this.xspeed = 0;
 	this.yspeed = 0;
 
-	
+
 	this.setBallSpeed = function (xsp, ysp) {
 		this.xspeed = random(-6, 6)//*speed;
 		this.yspeed = random(-4, 4)//*speethisd;
@@ -26,7 +26,7 @@ function ball() {
 		//console.log("x speed::"+this.xspeed+"\ny speed::"+this.yspeed)
 	}
 	this.setBallSpeed();
-	
+
 
 	this.SpeedCheck = function () {		//constraints speeds
 
@@ -48,9 +48,9 @@ function ball() {
 	}
 
 	this.update = function () {
-			this.x = this.x + this.xspeed;
-			this.y = this.y + this.yspeed;
-			this.SpeedCheck();
+		this.x = this.x + this.xspeed;
+		this.y = this.y + this.yspeed;
+		this.SpeedCheck();
 		//console.log("x speed::"+this.xspeed+"\ny speed::"+this.yspeed)
 	}
 
@@ -76,11 +76,11 @@ function ball() {
 		var X_multiplier = map(dist, 0, bar1.height / 2, 0.7, 1.5)		//maps  dist to 0.7 to 1
 
 
-		if (this.y > barTop && this.y < barDown && this.x <= bar1.width) {
+		if (this.y > barTop && this.y < barDown && this.x + scl <= bar1.width) {
 
 			this.yspeed = this.yspeed * Y_multiplier;
 			this.xspeed = -this.xspeed * X_multiplier;
-			this.x+=20;
+			// this.x+=20;
 			paddleHit.play();		//plays paddelHit.mp3
 
 
@@ -99,30 +99,41 @@ function ball() {
 	this.wallForBot = function (bar2) {
 
 
+
+
+
 		var barTop = bar2.y - bar2.height / 2		//top of bar
+
 		var barDown = bar2.y + bar2.height / 2		//bottom of bar
+
 		var dist = abs(this.y - bar2.y)			//dist bw center of bar and ball
 
 
+
 		//used to cahnge angle
+
 		//	more the ball is away from center yspeed will increase more
+
 		//	hence making more steeper angle
-		var Y_multiplier = map(dist, 0, bar2.height / 2, 0.8, 1.3)	//maps  dist to 0.2 to 1
-		var X_multiplier = map(dist, 0, bar2.height / 2, 0.7, 1.5)		//maps  dist to 0.7 to 1
+		var Y_multiplier = map(dist, 0, bar2.height / 2, 0.5, 1.5)	//maps  dist to 0.2 to 1
+
+		var X_multiplier = map(dist, 0, bar2.height / 2, 0.7, 1.3)		//maps  dist to 0.7 to 1
 
 
-		if (this.y > barTop && this.y < barDown && this.x +scl <= width-bar2.width && this.x +scl<width) {
+
+		if (this.y > barTop && this.y < barDown && this.x > width - bar2.width) {		//collison condition
+
+
 
 			this.yspeed = this.yspeed * Y_multiplier;
+
 			this.xspeed = -this.xspeed * X_multiplier;
-			this.x-=20;
-			paddleHit.play();		//plays paddelHit.mp3
 
+			//console.log(Y_multiplier)
 
-			//console.log(multiplier)
+			paddleHit.play();					//plays paddleHit.mp3
+
 		}
-
-		
 
 		if (this.x > width) {		//ball out of screen
 			dead = 1;
@@ -131,8 +142,6 @@ function ball() {
 			//console.log("dead p2");
 			this.reset(-1)
 		}
-
-		return X_multiplier;		//debugging
 	}
 
 	this.bounce = function () {
