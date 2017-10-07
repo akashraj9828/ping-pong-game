@@ -80,7 +80,7 @@ function ball() {
 
 			this.yspeed = this.yspeed * Y_multiplier;
 			this.xspeed = -this.xspeed * X_multiplier;
-			// this.x+=20;
+			this.x+=20;
 			paddleHit.play();		//plays paddelHit.mp3
 
 
@@ -111,11 +111,11 @@ function ball() {
 		var X_multiplier = map(dist, 0, bar2.height / 2, 0.7, 1.5)		//maps  dist to 0.7 to 1
 
 
-		if (this.y > barTop && this.y < barDown && this.x <= bar2.width) {
+		if (this.y > barTop && this.y < barDown && this.x +scl <= width-bar2.width && this.x +scl<width) {
 
 			this.yspeed = this.yspeed * Y_multiplier;
 			this.xspeed = -this.xspeed * X_multiplier;
-			// this.x-=20;
+			this.x-=20;
 			paddleHit.play();		//plays paddelHit.mp3
 
 
